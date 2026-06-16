@@ -1,5 +1,6 @@
 import express from "express";
 import path from "path";
+import fs from "fs";
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI, Type } from "@google/genai";
 import dotenv from "dotenv";
@@ -343,9 +344,34 @@ async function start() {
   } else {
     // Serve static files in production
     const distPath = path.join(process.cwd(), 'dist');
+    const indexPath = path.join(distPath, 'index.html');
+    
+    console.log(`[Production Server] Current working directory (cwd): ${process.cwd()}`);
+    console.log(`[Production Server] Serving static files from: ${distPath}`);
+    
+    if (fs.existsSync(indexPath)) {
+      console.log(`[Production Server] index.html successfully verified at ${indexPath}`);
+    } else {
+      console.error(`[Production Server] ERROR: index.html not found at ${indexPath}!`);
+      try {
+        console.log(`[Production Server] Files in cwd:`, fs.readdirSync(process.cwd()));
+        if (fs.existsSync(distPath)) {
+          console.log(`[Production Server] Files in dist:`, fs.readdirSync(distPath));
+        } else {
+          console.log(`[Production Server] dist folder does not exist!`);
+        }
+      } catch (e: any) {
+        console.error(`[Production Server] Failed to read directories: ${e.message}`);
+      }
+    }
+
     app.use(express.static(distPath));
     app.get('*', (req, res) => {
-      res.sendFile(path.join(distPath, 'index.html'));
+      if (fs.existsSync(indexPath)) {
+        res.sendFile(indexPath);
+      } else {
+        res.status(404).send(`Production Build Error: index.html not found. Please verify that 'npm run build' was executed successfully during deployment. (Cwd: ${process.cwd()})`);
+      }
     });
   }
 
