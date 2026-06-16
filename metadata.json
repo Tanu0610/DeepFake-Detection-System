@@ -1,0 +1,6 @@
+{
+  "name": "Deepfake Detection System",
+  "description": "An interactive, full-stack CNN-based Deepfake Detection analyzer and feature-map visualizer. Upload or select media to analyze frequency anomalies, double-compression noise, boundary blending, and facial structural markers powered by Gemini Forensic AI.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
