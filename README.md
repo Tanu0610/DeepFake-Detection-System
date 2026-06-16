@@ -2,11 +2,15 @@
 <img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
 </div>
 
-# Run and deploy your AI Studio app
+# Deepfake Detection System
 
-This contains everything you need to run your app locally.
+An interactive, full-stack CNN-based Deepfake Detection analyzer and feature-map visualizer.
 
-View your app in AI Studio: https://ai.studio/apps/9adef939-acb7-4639-904b-b2fe2a63e777
+## 🚀 Live Demo
+**[Launch Live Application on Render](https://deepfake-detection-system.onrender.com)**
+
+View original app in AI Studio: https://ai.studio/apps/9adef939-acb7-4639-904b-b2fe2a63e777
+
 
 ## Run Locally
 
